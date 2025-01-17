@@ -2,37 +2,36 @@ SOURCE_DIR = ./src
 TEST_DIR = ./test
 BIN_DIR = ./bin
 OBJ_DIR = ./obj
+DOCTEST_DIR = ./doctest
 
-CXXFLAGS = -O0 -g3 -fsanitize=address,undefined -std=c++20
-TEST_CXXFLAGS = $(CXXFLAGS) -Itest/doctest -Isrc/
+CXXFLAGS = -O0 -g3 -fsanitize=address,undefined -std=c++20 -Wall -Werror
+TEST_CXXFLAGS = $(CXXFLAGS) -isystem$(DOCTEST_DIR) -I$(SOURCE_DIR)
 
-TEST_FILES := $(shell find ./test -type f ! -path "./test/doctest/*")
+LOX_FILES := $(shell find $(SOURCE_DIR)/lox -type f -name "*.cpp")
+LOX_OBJS := $(LOX_FILES:$(SOURCE_DIR)/lox/%.cpp=$(OBJ_DIR)/lox/%.o)
+
+TEST_FILES := $(shell find ./test -type f -name "*.cpp")
 TEST_EXECS := $(TEST_FILES:$(TEST_DIR)/%.cpp=$(BIN_DIR)/test/%)
 
-SRC_FILES := $(shell find ./src/ -type f ! -name "main.cpp")
-SRC_OBJS := $(SRC_FILES:$(SOURCE_DIR)/%.cpp=$(OBJ_DIR)%)
-
-$(OBJ_DIR)/%: $(SOURCE_DIR)/%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SOURCE_DIR)/%.cpp | $(OBJ_DIR)
 	mkdir -p $(dir $@)
-	$(CXX) $(TEST_CXXFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-objs: $(info $(SRC_OBJS))
 
 $(BIN_DIR)/test/%: $(TEST_DIR)/%.cpp | $(BIN_DIR)
 	mkdir -p $(dir $@)
-	$(CXX) $(TEST_CXXFLAGS) $< -o $@ $(SRC_OBJS)
+	$(CXX) $(TEST_CXXFLAGS) $< $(LOX_OBJS) -o $@ $(SRC_OBJS)
 
 
+main: $(LOX_OBJS)
+	$(CXX) $(CXXFLAGS) $(SOURCE_DIR)/main.cpp $(LOX_OBJS) -o $(BIN_DIR)/cpplox
 
-
-main:
-	$(CXX) $(CXXFLAGS) $(SOURCE_DIR)/main.cpp -o $(BIN_DIR)/cpplox
-
-tests: $(TEST_EXECS)
+tests: $(LOX_OBJS) $(TEST_EXECS) $(TEST_TARGET_DATA)
 
 clean:
-	rm -rf $(BIN_DIR)/*
+	rm -rf bin/*
+	rm -rf obj/*
 
 .PHONY: all
 all: main tests
-.DEFAULT_GOAL := all
+.DEFAULT_GOAL := tests
