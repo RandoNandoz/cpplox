@@ -4,7 +4,7 @@ BIN_DIR = ./bin
 OBJ_DIR = ./obj
 DOCTEST_DIR = ./doctest
 
-CXXFLAGS = -O0 -g3 -fsanitize=address,undefined -std=c++20 -Wall -Werror
+CXXFLAGS = -std=c++17 -Wall -Werror -O0 -g -fsanitize=address,undefined
 TEST_CXXFLAGS = $(CXXFLAGS) -isystem$(DOCTEST_DIR) -I$(SOURCE_DIR)
 
 LOX_FILES := $(shell find $(SOURCE_DIR)/lox -type f -name "*.cpp")

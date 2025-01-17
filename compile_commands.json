@@ -1,102 +1,102 @@
 [
   {
     "arguments": [
-      "/usr/bin/g++",
-      "-O0",
-      "-g3",
-      "-fsanitize=address,undefined",
-      "-std=c++20",
+      "/usr/bin/c++",
+      "-std=c++17",
       "-Wall",
       "-Werror",
-      "-c",
-      "-o",
-      "obj/lox/filereader/FileReader.o",
-      "src/lox/filereader/FileReader.cpp"
-    ],
-    "directory": "/home/randyzhu/crafting-interpreters/cpplox",
-    "file": "/home/randyzhu/crafting-interpreters/cpplox/src/lox/filereader/FileReader.cpp",
-    "output": "/home/randyzhu/crafting-interpreters/cpplox/obj/lox/filereader/FileReader.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/g++",
       "-O0",
-      "-g3",
+      "-g",
       "-fsanitize=address,undefined",
-      "-std=c++20",
-      "-Wall",
-      "-Werror",
       "-c",
       "-o",
       "obj/lox/Lox.o",
       "src/lox/Lox.cpp"
     ],
-    "directory": "/home/randyzhu/crafting-interpreters/cpplox",
-    "file": "/home/randyzhu/crafting-interpreters/cpplox/src/lox/Lox.cpp",
-    "output": "/home/randyzhu/crafting-interpreters/cpplox/obj/lox/Lox.o"
+    "directory": "/Users/randyzhu/Desktop/cpplox",
+    "file": "/Users/randyzhu/Desktop/cpplox/src/lox/Lox.cpp",
+    "output": "/Users/randyzhu/Desktop/cpplox/obj/lox/Lox.o"
   },
   {
     "arguments": [
-      "/usr/bin/g++",
-      "-c",
-      "-O0",
-      "-g3",
-      "-fsanitize=address,undefined",
-      "-std=c++20",
+      "/usr/bin/c++",
+      "-std=c++17",
       "-Wall",
       "-Werror",
-      "./obj/lox/filereader/FileReader.o",
+      "-O0",
+      "-g",
+      "-fsanitize=address,undefined",
+      "-c",
+      "-o",
+      "obj/lox/filereader/FileReader.o",
+      "src/lox/filereader/FileReader.cpp"
+    ],
+    "directory": "/Users/randyzhu/Desktop/cpplox",
+    "file": "/Users/randyzhu/Desktop/cpplox/src/lox/filereader/FileReader.cpp",
+    "output": "/Users/randyzhu/Desktop/cpplox/obj/lox/filereader/FileReader.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-c",
+      "-std=c++17",
+      "-Wall",
+      "-Werror",
+      "-O0",
+      "-g",
+      "-fsanitize=address,undefined",
       "./obj/lox/Lox.o",
+      "./obj/lox/filereader/FileReader.o",
       "-o",
       "./bin/cpplox",
       "./src/main.cpp"
     ],
-    "directory": "/home/randyzhu/crafting-interpreters/cpplox",
-    "file": "/home/randyzhu/crafting-interpreters/cpplox/src/main.cpp",
-    "output": "/home/randyzhu/crafting-interpreters/cpplox/bin/cpplox"
+    "directory": "/Users/randyzhu/Desktop/cpplox",
+    "file": "/Users/randyzhu/Desktop/cpplox/src/main.cpp",
+    "output": "/Users/randyzhu/Desktop/cpplox/bin/cpplox"
   },
   {
     "arguments": [
-      "/usr/bin/g++",
+      "/usr/bin/c++",
       "-c",
-      "-O0",
-      "-g3",
-      "-fsanitize=address,undefined",
-      "-std=c++20",
+      "-std=c++17",
       "-Wall",
       "-Werror",
+      "-O0",
+      "-g",
+      "-fsanitize=address,undefined",
       "-isystem./doctest",
       "-I./src",
-      "./obj/lox/filereader/FileReader.o",
       "./obj/lox/Lox.o",
+      "./obj/lox/filereader/FileReader.o",
       "-o",
       "bin/test/lox/LoxTest",
       "test/lox/LoxTest.cpp"
     ],
-    "directory": "/home/randyzhu/crafting-interpreters/cpplox",
-    "file": "/home/randyzhu/crafting-interpreters/cpplox/test/lox/LoxTest.cpp",
-    "output": "/home/randyzhu/crafting-interpreters/cpplox/bin/test/lox/LoxTest"
+    "directory": "/Users/randyzhu/Desktop/cpplox",
+    "file": "/Users/randyzhu/Desktop/cpplox/test/lox/LoxTest.cpp",
+    "output": "/Users/randyzhu/Desktop/cpplox/bin/test/lox/LoxTest"
   },
   {
     "arguments": [
-      "/usr/bin/g++",
+      "/usr/bin/c++",
       "-c",
-      "-O0",
-      "-g3",
-      "-fsanitize=address,undefined",
-      "-std=c++20",
+      "-std=c++17",
       "-Wall",
       "-Werror",
+      "-O0",
+      "-g",
+      "-fsanitize=address,undefined",
       "-isystem./doctest",
       "-I./src",
-      "./obj/lox/filereader/FileReader.o",
       "./obj/lox/Lox.o",
+      "./obj/lox/filereader/FileReader.o",
       "-o",
       "bin/test/lox/filereader/FileReaderTest",
       "test/lox/filereader/FileReaderTest.cpp"
     ],
-    "directory": "/home/randyzhu/crafting-interpreters/cpplox",
-    "file": "/home/randyzhu/crafting-interpreters/cpplox/test/lox/filereader/FileReaderTest.cpp",
-    "output": "/home/randyzhu/crafting-interpreters/cpplox/bin/test/lox/filereader/FileReaderTest"
+    "directory": "/Users/randyzhu/Desktop/cpplox",
+    "file": "/Users/randyzhu/Desktop/cpplox/test/lox/filereader/FileReaderTest.cpp",
+    "output": "/Users/randyzhu/Desktop/cpplox/bin/test/lox/filereader/FileReaderTest"
   }
 ]
