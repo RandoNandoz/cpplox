@@ -2,9 +2,10 @@ SOURCE_DIR = ./src
 TEST_DIR = ./test
 BIN_DIR = ./bin
 OBJ_DIR = ./obj
-DOCTEST_DIR = ./doctest
+DOCTEST_DIR = ./lib/doctest
+MAGIC_ENUM_DIR = ./lib/magic_enum
 
-CXXFLAGS = -std=c++17 -Wall -Werror -O0 -g -fsanitize=address,undefined
+CXXFLAGS = -std=c++17 -Wall -Werror -Wno-unused-variable -Wno-unused-private-field -O0 -g -fsanitize=address,undefined -isystem$(MAGIC_ENUM_DIR)
 TEST_CXXFLAGS = $(CXXFLAGS) -isystem$(DOCTEST_DIR) -I$(SOURCE_DIR)
 
 LOX_FILES := $(shell find $(SOURCE_DIR)/lox -type f -name "*.cpp")

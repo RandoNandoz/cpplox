@@ -3,13 +3,14 @@
 #include "lox/Lox.hpp" 
 
 int main(int argc, char* argv[]) {
-    if (argc > 1) {
-        std::cout << "Usage: cpplox: [script]";
+    Lox lox;
+    if (argc > 2) {
+        std::cout << "Usage: cpplox: [script]\n";
         return EX_USAGE;
-    } else if (argc == 1) {
-        // run the file
+    } else if (argc == 2) {
+        lox.runFile(argv[0]);
     } else {
-        // run the REPL
+        lox.runREPL();
     }
 
     return EX_OK;
