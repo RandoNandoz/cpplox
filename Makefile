@@ -5,7 +5,7 @@ OBJ_DIR = ./obj
 DOCTEST_DIR = ./lib/doctest
 MAGIC_ENUM_DIR = ./lib/magic_enum
 
-CXXFLAGS = -std=c++17 -Wall -Werror -Wno-unused-variable -Wno-unused-private-field -O0 -g -fsanitize=address,undefined -isystem$(MAGIC_ENUM_DIR)
+CXXFLAGS = -std=c++20 -Wall -Werror -Wno-unused-variable -Wno-unused-private-field -O0 -g -fsanitize=address,undefined -isystem$(MAGIC_ENUM_DIR)
 TEST_CXXFLAGS = $(CXXFLAGS) -isystem$(DOCTEST_DIR) -I$(SOURCE_DIR)
 
 LOX_FILES := $(shell find $(SOURCE_DIR)/lox -type f -name "*.cpp")

@@ -5,15 +5,15 @@
 
 #include "filereader/FileReader.hpp"
 
-void Lox::runFile(const std::string& path) {
+void Lox::run_file(const std::string& path) {
     FileReader reader(path);
-    this->run(reader.readAsString());
+    this->run(reader.read_as_string());
     if (this->hadError) {
         throw std::invalid_argument("File had errors!");
     }
 }
 
-void Lox::runREPL() {
+void Lox::run_REPL() {
     std::string user_input;
     while (std::cin >> user_input) {
         this->run(user_input);
@@ -25,7 +25,7 @@ void Lox::run(const std::string& source) {}
 
 Lox::Lox() { this->hadError = false; }
 
-void Lox::logError(const int line, const std::string& message) { report(line, "", message); }
+void Lox::log_error(const int line, const std::string& message) { report(line, "", message); }
 
 void Lox::report(const int line, const std::string& where, const std::string& message) {
     std::cout << "[line " << line << "] Error" + where + ": " + message << "\n";

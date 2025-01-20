@@ -8,9 +8,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Usage: cpplox: [script]\n";
         return EX_USAGE;
     } else if (argc == 2) {
-        lox.runFile(argv[0]);
+        lox.run_file(argv[0]);
     } else {
-        lox.runREPL();
+        lox.run_REPL();
     }
 
     return EX_OK;

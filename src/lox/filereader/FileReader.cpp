@@ -7,7 +7,7 @@ FileReader::FileReader(const std::string& path) {
     this->file_path = std::move(path);
 }
 
-std::string FileReader::readAsString() {
+std::string FileReader::read_as_string() {
     std::ifstream in;
     in.open(this->file_path);
 

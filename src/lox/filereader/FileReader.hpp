@@ -9,5 +9,5 @@ class FileReader {
    public:
     FileReader(const std::string& path);
 
-    std::string readAsString();
+    std::string read_as_string();
 };
