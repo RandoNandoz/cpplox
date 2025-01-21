@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <variant>
 #include <string>
 
 namespace lv {
@@ -9,4 +10,4 @@ constexpr size_t NULLPTR_INDEX = 3;
 
 }  // namespace lv
 
-using LiteralValue = std::variant<bool, double, std::string, nullptr_t>;
+using LiteralValue = std::variant<bool, double, std::string, std::nullptr_t>;

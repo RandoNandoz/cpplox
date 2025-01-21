@@ -4,10 +4,11 @@
 #include <ostream>
 #include <stdexcept>
 #include <string>
+#include <variant>
 
 #include "TokenType.hpp"
 
-Token::Token(TokenType type, const std::string& lexeme, std::variant<bool, double, std::string, nullptr_t> literal, int line)
+Token::Token(TokenType type, const std::string& lexeme, std::variant<bool, double, std::string, std::nullptr_t> literal, int line)
     : type(type), lexeme(lexeme), literal(literal), line(line){};
 
 std::ostream& operator<<(std::ostream& os, const Token& token) { os << token.to_string(); }
