@@ -2,7 +2,10 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 
+#include "Token.hpp"
+#include "TokenScanner.hpp"
 #include "filereader/FileReader.hpp"
 
 void Lox::run_file(const std::string& path) {
@@ -21,7 +24,13 @@ void Lox::run_REPL() {
     this->hadError = false; // reset error flag after running a line
 }
 
-void Lox::run(const std::string& source) {}
+void Lox::run(const std::string& source) {
+    TokenScanner ts{source};
+    std::vector<Token> result = ts.scan_tokens();
+    for (Token t : result) {
+        std::cout << t << "\n";
+    }
+}
 
 Lox::Lox() { this->hadError = false; }
 
