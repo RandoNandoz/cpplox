@@ -17,12 +17,13 @@ class Token {
     LiteralValue literal;
     int line;
 
-    std::string to_string() const;
 
    public:
     Token(TokenType type, const std::string& lexeme, LiteralValue literal, int line);
 
     friend std::ostream& operator<<(std::ostream& os, const Token& token);
+
+    std::string to_string() const;
 
     /**
         Equality comparison on Token is weak - all fields need to be equal,

@@ -14,7 +14,7 @@ TokenScanner::TokenScanner(const std::string& source) : source(source), start(0)
 bool TokenScanner::at_end() { return current >= this->source.length(); }
 
 void TokenScanner::scan_token() {
-    switch (char c = advance()) {
+    switch (char c = advance(); c) {
         case '(': {
             addToken(LEFT_PAREN);
             break;

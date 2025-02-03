@@ -10,9 +10,9 @@ class TokenScanner {
     std::string source;
     std::vector<Token> tokens;
     std::vector<std::string> errors;
-    int start;    // start of first lexeme
-    int current;  // current idx of line
-    int line;     // current line #
+    size_t start;    // start of first lexeme
+    size_t current;  // current idx of line
+    size_t line;     // current line #
 
     bool at_end();
     void scan_token();
