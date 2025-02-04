@@ -1,22 +1,17 @@
 #include "TokenScanner.hpp"
 
-#include <memory>
 #include <string>
 #include <vector>
 
 #include "Token.hpp"
 #include "TokenType.hpp"
-#include "errorreporter/ConsoleErrorReporter.hpp"
+#include "errorreporter/ErrorReportable.hpp"
 #include "errorreporter/IErrorReporter.hpp"
 
 using enum TokenType;
 
-TokenScanner::TokenScanner(const std::string& source) : source(source), start(0), current(0), line(1) {
-    this->error_reporter = std::make_unique<ConsoleErrorReporter>();
-}
-
-TokenScanner::TokenScanner(const std::string& source, const std::shared_ptr<IErrorReporter> error_reporter)
-    : source(source), error_reporter(std::move(error_reporter)), start(0), current(0), line(1) {}
+TokenScanner::TokenScanner(const std::string& source, const IErrorReporter& error_reporter)
+    : ErrorReportable(error_reporter), source(source), start(0), current(0), line(1) {}
 
 bool TokenScanner::at_end() { return current >= this->source.length(); }
 

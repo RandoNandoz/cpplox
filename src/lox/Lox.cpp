@@ -6,6 +6,8 @@
 
 #include "Token.hpp"
 #include "TokenScanner.hpp"
+#include "errorreporter/ErrorReportable.hpp"
+#include "errorreporter/IErrorReporter.hpp"
 #include "filereader/FileReader.hpp"
 
 void Lox::run_file(const std::string& path) {
@@ -21,18 +23,18 @@ void Lox::run_REPL() {
     while (std::cin >> user_input) {
         this->run(user_input);
     }
-    this->hadError = false; // reset error flag after running a line
+    this->hadError = false;  // reset error flag after running a line
 }
 
 void Lox::run(const std::string& source) {
-    TokenScanner ts{source};
+    TokenScanner ts{source, this->error_reporter};
     std::vector<Token> result = ts.scan_tokens();
     for (Token t : result) {
         std::cout << t << "\n";
     }
 }
 
-Lox::Lox() { this->hadError = false; }
+Lox::Lox(const IErrorReporter& error_reporter) : ErrorReportable(error_reporter), hadError(false){};
 
 void Lox::log_error(const int line, const std::string& message) { report(line, "", message); }
 

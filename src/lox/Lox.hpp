@@ -1,12 +1,12 @@
 #pragma once
 
 #include <string>
+#include "errorreporter/ErrorReportable.hpp"
 #include "errorreporter/IErrorReporter.hpp"
 
-class Lox {
+class Lox : ErrorReportable {
    public:
-    Lox();
-    Lox(const IErrorReporter& error_reporter);
+    explicit Lox(const IErrorReporter& error_reporter);
     /**
         Runs the lox interpreter on a file. Reads file from disk then calls Lox.run() on it.
      */
