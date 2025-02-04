@@ -1,10 +1,12 @@
 #pragma once
 
 #include <string>
+#include "errorreporter/IErrorReporter.hpp"
 
 class Lox {
    public:
     Lox();
+    Lox(const IErrorReporter& error_reporter);
     /**
         Runs the lox interpreter on a file. Reads file from disk then calls Lox.run() on it.
      */
@@ -16,7 +18,7 @@ class Lox {
 
    private:
     bool hadError;
-    void log_error(const int line, const std::string& message);
 
+    void log_error(const int line, const std::string& message);
     void report(const int line, const std::string& where, const std::string& message);
 };

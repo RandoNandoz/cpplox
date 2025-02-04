@@ -1,57 +1,65 @@
 #include "TokenScanner.hpp"
 
+#include <memory>
 #include <string>
 #include <vector>
 
 #include "Token.hpp"
 #include "TokenType.hpp"
+#include "errorreporter/ConsoleErrorReporter.hpp"
+#include "errorreporter/IErrorReporter.hpp"
 
 using enum TokenType;
 
-TokenScanner::TokenScanner(const std::string& source) : source(source), start(0), current(0), line(1) {}
+TokenScanner::TokenScanner(const std::string& source) : source(source), start(0), current(0), line(1) {
+    this->error_reporter = std::make_unique<ConsoleErrorReporter>();
+}
+
+TokenScanner::TokenScanner(const std::string& source, const std::shared_ptr<IErrorReporter> error_reporter)
+    : source(source), error_reporter(std::move(error_reporter)), start(0), current(0), line(1) {}
 
 bool TokenScanner::at_end() { return current >= this->source.length(); }
 
 void TokenScanner::scan_token() {
     switch (char c = advance(); c) {
         case '(': {
-            addToken(LEFT_PAREN);
+            add_token(LEFT_PAREN);
             break;
         }
         case ')': {
-            addToken(RIGHT_PAREN);
+            add_token(RIGHT_PAREN);
             break;
         }
         case '{': {
-            addToken(LEFT_BRACE);
+            add_token(LEFT_BRACE);
             break;
         }
         case '}': {
-            addToken(RIGHT_BRACE);
+            add_token(RIGHT_BRACE);
             break;
         }
         case ',': {
-            addToken(COMMA);
+            add_token(COMMA);
             break;
         }
         case '.': {
-            addToken(DOT);
+            add_token(DOT);
             break;
         }
         case '-': {
-            addToken(MINUS);
+            add_token(MINUS);
             break;
         }
         case '+': {
-            addToken(PLUS);
+            add_token(PLUS);
             break;
         }
         case ';': {
-            addToken(SEMICOLON);
+            add_token(SEMICOLON);
             break;
         }
         case '*': {
-            addToken(STAR);
+            add_token(STAR);
             break;
         }
         default: {
@@ -67,11 +75,9 @@ char TokenScanner::advance() {
     return result;
 }
 
-void TokenScanner::addToken(TokenType type) {
-    this->addToken(type, nullptr);
-}
+void TokenScanner::add_token(TokenType type) { this->add_token(type, nullptr); }
 
-void TokenScanner::addToken(TokenType type, LiteralValue value) {
+void TokenScanner::add_token(TokenType type, LiteralValue value) {
     std::string lexeme = this->source.substr(this->start, this->current);
     this->tokens.emplace_back(Token(type, lexeme, value, this->line));
 }

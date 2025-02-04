@@ -1,7 +1,10 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
+
+#include "errorreporter/IErrorReporter.hpp"
 
 #include "Token.hpp"
 #include "TokenType.hpp"
@@ -10,6 +13,8 @@ class TokenScanner {
     std::string source;
     std::vector<Token> tokens;
     std::vector<std::string> errors;
+    std::shared_ptr<IErrorReporter> error_reporter;
+    
     size_t start;    // start of first lexeme
     size_t current;  // current idx of line
     size_t line;     // current line #
@@ -17,11 +22,11 @@ class TokenScanner {
     bool at_end();
     void scan_token();
     char advance();
-    void addToken(TokenType type);
-    void addToken(TokenType type, LiteralValue value);
+    void add_token(TokenType type);
+    void add_token(TokenType type, LiteralValue value);
 
    public:
     explicit TokenScanner(const std::string& source);
-    std::vector<std::string> report_errors();
+    TokenScanner(const std::string& source, const std::shared_ptr<IErrorReporter> error_reporter);
     std::vector<Token> scan_tokens();
 };
