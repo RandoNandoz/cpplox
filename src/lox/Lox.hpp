@@ -4,9 +4,9 @@
 #include "errorreporter/ErrorReportable.hpp"
 #include "errorreporter/IErrorReporter.hpp"
 
-class Lox : ErrorReportable {
+class Lox : public ErrorReportable {
    public:
-    explicit Lox(const IErrorReporter& error_reporter);
+    explicit Lox(IErrorReporter& error_reporter);
     /**
         Runs the lox interpreter on a file. Reads file from disk then calls Lox.run() on it.
      */
@@ -18,7 +18,4 @@ class Lox : ErrorReportable {
 
    private:
     bool hadError;
-
-    void log_error(const int line, const std::string& message);
-    void report(const int line, const std::string& where, const std::string& message);
 };

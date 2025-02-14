@@ -1,3 +1,4 @@
 {
-    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bin}/**/*{test,Test,TEST}*"
+    "testMate.cpp.test.executables": "{build,Build,BUILD,out,Out,OUT,bin}/**/*{test,Test,TEST}*",
+    "makefile.configureOnOpen": false
 }

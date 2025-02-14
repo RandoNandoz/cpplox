@@ -35,4 +35,4 @@ clean:
 
 .PHONY: all
 all: main tests
-.DEFAULT_GOAL := tests
+.DEFAULT_GOAL := all

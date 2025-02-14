@@ -1,9 +1,11 @@
 #include <iostream>
 #include <sysexits.h>
 #include "lox/Lox.hpp" 
+#include "lox/errorreporter/ConsoleErrorReporter.hpp"
 
 int main(int argc, char* argv[]) {
-    Lox lox;
+    ConsoleErrorReporter reporter{};
+    Lox lox{reporter};
     if (argc > 2) {
         std::cout << "Usage: cpplox: [script]\n";
         return EX_USAGE;

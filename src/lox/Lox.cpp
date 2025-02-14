@@ -34,10 +34,4 @@ void Lox::run(const std::string& source) {
     }
 }
 
-Lox::Lox(const IErrorReporter& error_reporter) : ErrorReportable(error_reporter), hadError(false){};
-
-void Lox::log_error(const int line, const std::string& message) { report(line, "", message); }
-
-void Lox::report(const int line, const std::string& where, const std::string& message) {
-    std::cout << "[line " << line << "] Error" + where + ": " + message << "\n";
-}
+Lox::Lox(IErrorReporter& error_reporter) : ErrorReportable(error_reporter), hadError(false){};

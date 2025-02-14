@@ -33,19 +33,19 @@ std::string Token::to_string() const {
 
     result += "literal: {";
     switch (size_t type_index = this->literal.index(); type_index) {
-        case lv::BOOL_INDEX: {
+        case lv::bool_index: {
             result += std::get<bool>(this->literal) ? "true" : "false";
             break;
         }
-        case lv::DOUBLE_INDEX: {
+        case lv::double_index: {
             result += std::to_string(std::get<double>(this->literal));
             break;
         }
-        case lv::STRING_INDEX: {
+        case lv::string_index: {
             result += std::get<std::string>(this->literal);
             break;
         }
-        case lv::NULLPTR_INDEX: {
+        case lv::nullptr_index: {
             result +=  "nullptr";
             break;
         }

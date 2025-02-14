@@ -10,7 +10,7 @@
 
 using enum TokenType;
 
-TokenScanner::TokenScanner(const std::string& source, const IErrorReporter& error_reporter)
+TokenScanner::TokenScanner(const std::string& source, IErrorReporter& error_reporter)
     : ErrorReportable(error_reporter), source(source), start(0), current(0), line(1) {}
 
 bool TokenScanner::at_end() { return current >= this->source.length(); }
@@ -57,8 +57,23 @@ void TokenScanner::scan_token() {
             add_token(STAR);
             break;
         }
+        case '!': {
+            add_token(match('=') ? BANG_EQUAL : BANG);
+            break;
+        }
+        case '=': {
+            add_token(match('=') ? EQUAL_EQUAL : EQUAL);
+        }
+        case '<': {
+            add_token(match('<') ? LESS_EQUAL : LESS);
+            break;
+        }
+        case '>': {
+            add_token(match('=') ? GREATER_EQUAL : GREATER);
+            break;
+        }
         default: {
-            // idk what to do, invalid char
+            error_reporter.log_error(line, "Unexpected character");
             break;
         }
     }
@@ -86,4 +101,25 @@ std::vector<Token> TokenScanner::scan_tokens() {
 
     this->tokens.emplace_back(Token(END_OF_FILE, "", nullptr, this->line));
     return this->tokens;
+}
+
+bool TokenScanner::match(char expected) {
+    if (at_end()) {
+        return false;
+    }
+
+    if (source[current] != expected) {
+        return false;
+    }
+
+    current++;
+    return true;
+}
+
+char TokenScanner::peek() {
+    if (at_end()) {
+        return '\0';
+    }
+
+    return source[current];
 }

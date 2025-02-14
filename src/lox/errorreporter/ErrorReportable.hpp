@@ -6,6 +6,6 @@ class ErrorReportable {
    public:
     virtual ~ErrorReportable();
    protected:
-    ErrorReportable(const IErrorReporter& error_reporter);
-    const IErrorReporter& error_reporter;
+    ErrorReportable(IErrorReporter& error_reporter);
+    IErrorReporter& error_reporter;
 };
